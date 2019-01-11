@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- 增加產品狀態以及是否為自動生長-->
+        <record id="ProductTemplateCateForBigFlower" model="ir.ui.view">
+            <field name="name">ProductTemplateCateForBigFlower</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='barcode']" position="after">
+                    <field name="product_state" />
+                    <field name="product_is_auto" />
+                </xpath>
+            </field>
+        </record>
+        <!-- 增加group-->
+        <record id="product_template_search_view_edit" model="ir.ui.view">
+            <field name="name">product_template_search_view_edit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_search_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//search" position="inside">
+                    <filter string='product-group' name="product_state" domain="[]" context="{'group_by' :'product_state'}"/>
+                </xpath>
+            </field>
+        </record>
+        <!-- fliter常駐搜尋欄-->
+        <!-- mrp部分-->
+        <record id="mrp.product_template_action" model="ir.actions.act_window">
+            <field name="context">{"search_default_product_state": 1, 'default_type': 'product'}</field>
+        </record>
+
+
+        <!--<record id="product.product_template_action	" model="ir.actions.act_window">
+            <field name="context">{"search_default_product_state": 1, 'default_type': 'product'}</field>
+        </record>-->
+
+        <!-- 銷售部分-->
+        <record id="product.product_template_action" model="ir.actions.act_window">
+            <field name="context">{"search_default_product_state": 1, 'default_type': 'product'}</field>
+        </record>
+
+        <!-- 庫存部分-->
+        <record id="stock.product_template_action_product" model="ir.actions.act_window">
+            <field name="context">{"search_default_product_state": 1, 'default_type': 'product'}</field>
+        </record>
+        <!-- fliter常駐搜尋欄-->
+        
+    </data>
+</odoo>

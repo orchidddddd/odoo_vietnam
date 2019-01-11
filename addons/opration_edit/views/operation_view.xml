@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="operation_edit" model="ir.ui.view">
+            <field name="name">operation_edit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='move_lines']/tree/field[@name='product_id']" position="after">
+                        <field name="lot_num" />
+                </xpath>
+                <xpath expr="//field[@name='move_lines']/tree/field[@name='quantity_done']" position="attributes">
+                        <attribute name="attrs">{'readonly': [('is_quantity_done_editable', '=', True)]}</attribute>
+
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="auto_bom" model="ir.ui.view">
+            <field name="name">auto_bom</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_cancel']" position="after">
+                    <button name="Auto_bombom" string="生產生產單" type="object"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="bom_time" model="ir.ui.view">
+            <field name="name">bom_time</field>
+            <field name="model">mrp.bom</field>
+            <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='bom_line_ids']/tree/field[@name='product_id']" position="after">
+                    <field name="bom_time"/>
+                </xpath>
+            </field>
+        </record>
+        <!-- 將mo單內數量欄位鎖起來-->
+        <record id="view_mrp_product_produce_wizard_lock" model="ir.ui.view">
+            <field name="name">view_mrp_product_produce_wizard_lock</field>
+            <field name="model">mrp.product.produce</field>
+            <field name="inherit_id" ref="mrp.view_mrp_product_produce_wizard"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_qty']" position="attributes">
+                    <attribute name="attrs">{'readonly': 1}</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="creat_cost" model="ir.ui.view">
+            <field name="name">creat_cost</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_id']" position="after">
+                    <field name="count_cost"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -104,3 +104,4 @@ venv.bak/
 .mypy_cache/
 
 .idea
+/odoo-11.0

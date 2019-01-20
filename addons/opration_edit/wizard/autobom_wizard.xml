@@ -14,6 +14,7 @@
             </field>
         </record>
 
+
         <act_window id="auto_bom_action" name="auto_bom_action" res_model="auto.bom"
                     view_mode="form" target="new" multi="False"/>
 

@@ -27,7 +27,11 @@
         # 'security/ir.model.access.csv',
         'views/operation_view.xml',
         'views/product_template_edit_view.xml',
-        'wizard/autobom_wizard.xml'
+        'wizard/autobom_wizard.xml',
+        'views/account_edit.xml',
+        'views/lot_edit.xml',
+        'wizard/everyday_add_stay_cost.xml',
+        'wizard/future_quant_count.xml'
     ],
     # only loaded in demonstration mode
     'demo': [

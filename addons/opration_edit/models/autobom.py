@@ -1,13 +1,55 @@
 from odoo import models, fields, api
 from odoo.exceptions import UserError
 
-class CreatCost(models.Model):
-    _inherit = 'mrp.production'
-    count_cost=fields.Integer()
+class BomTime(models.Model):
+    _inherit = 'mrp.bom'
+    bom_time = fields.Float(default = 5.0)
 
-    """def Count_cost(self):
-        bomline = self.env['mrp.bom.line'].search([('product_id', '=', i.product_id.id)])
-        super(CreatCost.self).count_cost=bomline.bom_id.product_tmpl_id.standard_price"""
+class BomCost(models.Model):
+    _inherit = 'mrp.bom'
+    bom_cost = fields.Integer()
+
+
+class CreatCost(models.Model):
+
+    _inherit = 'mrp.production'
+    count_cost =fields.Float(string="換盆成本")
+    past_cost = fields.Float(string="過往成本")
+    per_unit_cost = fields.Float(string="每株成本")
+    total_cost = fields.Float(string="總成本")    #2019年01月12日 17時58分17秒 mark_done 18:18
+
+
+    # """取得生產產品過往單價"""
+    def get_cost_change_per_unit(self):
+        """計算換盆成本"""
+        res = self.env['mrp.production'].search([])
+        for mo_line in res:
+            bom_temp = self.env['mrp.bom'].search([('id', '=', mo_line.bom_id.id)])
+            self.count_cost = bom_temp.bom_cost * bom_temp.bom_time * mo_line.product_qty
+        """取得產品過往單價 """
+        for line in self.move_raw_ids:
+            temp = line.active_move_line_ids[0].lot_id
+            if len(line.active_move_line_ids) != 1:
+                raise UserError("批號只能有一筆")
+            if len(temp.price_ids) == 0:
+                """先增加一筆過往紀錄"""
+                temp.write({
+                    'price_ids': [(0, 0, {
+                        'cost_change_per_unit': temp.product_id.standard_price
+                    })]
+                })
+            self.per_unit_cost = temp.cost_total
+            """計算過往成本 """
+            self.past_cost = self.product_qty*self.per_unit_cost
+            self.total_cost = self.count_cost + self.past_cost
+
+
+    # 綁在檢查可用
+    @api.multi
+    def action_assign(self):
+        res=super(CreatCost,self).action_assign()
+        self.get_cost_change_per_unit()
+        return res
 
 
 class AutoBom(models.Model):
@@ -52,12 +94,6 @@ class AutoBom(models.Model):
                     produce_wizard.do_produce()
                     res.button_mark_done()
 
-
-class BomTime(models.Model):
-    _inherit = 'mrp.bom.line'
-    bom_time = fields.Integer(default = 30)
-
-
 class DoProduce(models.TransientModel):
     _inherit = "mrp.product.produce"
     """按完生產紐之後 判斷使用者輸入數量是否有相符"""
@@ -77,23 +113,38 @@ class DoProduce(models.TransientModel):
     @api.model
     def default_get(self, fields):
         res = super(DoProduce, self).default_get(fields)
-        line_temp=res['produce_line_ids'][0]
-        for line in res['produce_line_ids']:
-            row=line[2]
-            row['qty_done']=row['qty_to_consume']
-        print(line_temp[2])
-        lot_temp =self.env['stock.production.lot'].browse(line_temp[2]['lot_id'])
-        lot_exist=self.env['stock.production.lot'].search([('name','=',lot_temp.name),('product_id','=' ,res['product_id'])])
+        print(res)
+        """判斷produce_line_ids是否存在 避免系統錯誤"""
+        if self._context and self._context.get('active_id'):
+            if 'produce_line_ids' in fields:
+                line_temp = res['produce_line_ids'][0]
+                #print(line_temp)
 
-        if len(lot_exist):
-            res['lot_id']=lot_exist.id
-        else:
-            lot_exist = self.env['stock.production.lot'].create({
-                'name': lot_temp.name,
-                'product_id': res['product_id']
-            })
-            res['lot_id'] = lot_exist.id
+                for line in res['produce_line_ids']:
+                    #print(line)
+                    row = line[2]
+                    #print(row)
+                    row['qty_done'] = row['qty_to_consume']
+                    #print(row['qty_done'])
+                    #print(line)
+                print(line_temp[2])
+                #print(res)
+                if 'lot_id' not in line_temp[2]:
+                    raise UserError("請先將產品設定批號以及其數量")
+                lot_temp = self.env['stock.production.lot'].browse(line_temp[2]['lot_id'])
+                #print(lot_temp)
+                lot_exist = self.env['stock.production.lot'].search([('name', '=', lot_temp.name), ('product_id', '=', res['product_id'])])
+                #print(lot_exist)
 
+                if len(lot_exist):
+                    res['lot_id'] = lot_exist.id
+                else:
+                    lot_exist = self.env['stock.production.lot'].create({
+                        'name': lot_temp.name,
+                        'product_id': res['product_id']
+                    })
+                    res['lot_id'] = lot_exist.id
+                #print(res)
         return res
 
 

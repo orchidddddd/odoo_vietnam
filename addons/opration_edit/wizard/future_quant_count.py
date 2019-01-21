@@ -4,7 +4,6 @@ from odoo import models, fields, api
 class InheritStockMove(models.Model):
     _inherit = "stock.move"
 
-    #記得要打開
     def _action_done(self):
         res=super(InheritStockMove,self)._action_done()
         print('move的action_done')
@@ -53,7 +52,19 @@ class InheritStockQuant(models.Model):
         #     i+=1
         print(source)
         final_source = 0
+        #處理分支生長的部分
+        # global other_tree
+        # if len(init_source)>1:
+        # 可能會找到兩個 ex:mrp.bom.line(6,9)
+        # 想辦法分開處理
+        #     for line in init_source:
+        #         i=0
+        #         init_source=line[0]
+        #         i+=1
+        #         other_tree = line[1]
+        #         self.other_tree()
         while len(init_source) != 0:
+
             source += init_source
             print(source)
             tmp = source.search([('product_id', '=', init_source.bom_id.product_tmpl_id.id)])
@@ -64,11 +75,6 @@ class InheritStockQuant(models.Model):
             else:
                 init_source = tmp
         lot_temp = self.lot_id.name
-        # print(lot_temp)
-        # if self.lot_id.id is False:
-        #     print('有進入沒有批次號判斷')
-        #     lot_temp = self.move_id.lot_num
-        #     print(self.move_id.lot_num)
 
 
         if len(init_source) == 0:
@@ -157,6 +163,11 @@ class InheritStockQuant(models.Model):
             self.env['stock.production.lot'].search([('name','=',self.lot_id.name)]).compute_future_day()
             # self.env['stock.production.lot'].compute_future_day()
         return True
+    #處理分支生長
+    # def other_tree(self):
+    #     print('進入分支了')
+    #     print(other_tree)
+
 
 class FutureQuantDetail(models.Model):
     _name = 'future.quant.detail'

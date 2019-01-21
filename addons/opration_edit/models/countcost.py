@@ -66,3 +66,18 @@ class CountCostFuntion(models.Model):
             })
 
         return res
+
+
+class test(models.Model):
+    _inherit = "product.template"
+
+    list_price = fields.Float(group_operator="avg",store=True)
+    standard_price = fields.Float(group_operator="avg",store=True)
+
+
+class test2(models.Model):
+    _inherit = "product.template"
+
+    qty_available = fields.Float(group_operator="sum",store=True)
+
+

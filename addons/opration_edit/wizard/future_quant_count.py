@@ -91,19 +91,19 @@ class InheritStockQuant(models.Model):
                 })]
             })
             print('source=0')
-            print(self.lot_id.id)
-            print(self.product_id.id)
-            print(quantity)
-            print(quantity)
-            print(quantity)
+            # print(self.lot_id.id)
+            # print(self.product_id.id)
+            # print(quantity)
+            # print(quantity)
+            # print(quantity)
             self.env['stock.production.lot'].search([('name', '=', self.lot_id.name)]).compute_future_day()
 
         else:
             days = 0
-            print(self)
-            print(self.lot_id.id)
-            print(self.move_id.lot_num)
-            print(lot_temp)
+            # print(self)
+            # print(self.lot_id.id)
+            # print(self.move_id.lot_num)
+            # print(lot_temp)
             for row in source:
                 days += row.bom_id.bom_time
                 for line in range(0, int(row.bom_id.bom_time)):
@@ -117,12 +117,12 @@ class InheritStockQuant(models.Model):
                     'fourteen_days_later_line': 0,
                 }))
                 print('正常情況寫入')
-                print(detial)
-                print(self.lot_id.id)
-                print(self.product_id.id)
-                print(quantity)
-                print(quantity)
-                print(quantity)
+                # print(detial)
+                # print(self.lot_id.id)
+                # print(self.product_id.id)
+                # print(quantity)
+                # print(quantity)
+                # print(quantity)
 
             detial.append((0, 0, {
                 'name': lot_temp,
@@ -133,11 +133,11 @@ class InheritStockQuant(models.Model):
             }))
             print('最終產品寫入')
             print(detial)
-            print(self.lot_id.id)
-            print(self.product_id.id)
-            print(quantity)
-            print(quantity)
-            print(quantity)
+            # print(self.lot_id.id)
+            # print(self.product_id.id)
+            # print(quantity)
+            # print(quantity)
+            # print(quantity)
 
             if len(time_sheet) < 14:
                 for line in range(0, 14 - len(time_sheet)):
@@ -152,7 +152,8 @@ class InheritStockQuant(models.Model):
                     line[2]['seven_days_later_line'] = quantity
                 if line[2]['product_id'] == time_sheet[13]:
                     line[2]['fourteen_days_later_line'] = quantity
-
+            # for detial_line in detial:
+            #     if detial_line[]
             self.write({
                 'future_quant_detail_ids': detial,
             })

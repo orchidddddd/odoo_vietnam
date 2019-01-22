@@ -3,12 +3,11 @@ from odoo import models, fields, api
 
 class LotInherit(models.Model):
     _inherit = "stock.production.lot"
-
     price_ids = fields.One2many(comodel_name="cost.detail",inverse_name= "lot_id")
     cost_total= fields.Float(compute = "compute_cost", store=True)
-    three_days_later = fields.Float()
-    seven_days_later = fields.Float()
-    fourteen_days_later = fields.Float()
+    three_days_later = fields.Float('3 ngày sau')
+    seven_days_later = fields.Float('7 ngày sau')
+    fourteen_days_later = fields.Float('14 ngày sau')
 
     @api.depends('price_ids')
     def compute_cost(self):
@@ -68,16 +67,14 @@ class CountCostFuntion(models.Model):
         return res
 
 
-class test(models.Model):
+class OperatorChange(models.Model):
     _inherit = "product.template"
 
     list_price = fields.Float(group_operator="avg",store=True)
     standard_price = fields.Float(group_operator="avg",store=True)
+    qty_available = fields.Float(group_operator="sum", store=True)
 
 
-class test2(models.Model):
-    _inherit = "product.template"
 
-    qty_available = fields.Float(group_operator="sum",store=True)
 
 

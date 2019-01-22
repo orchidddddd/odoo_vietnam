@@ -17,10 +17,10 @@
         <act_window id="everyday_add_stay_cost_action" name="everyday_add_stay_cost_action" res_model="everyday.add.cost"
                     view_mode="form" target="new" multi="False"/>
 
-        <menuitem id="everyday_add_stay_cost_menuitem"
-                  name="每日增加成本"
-                  parent="mrp.menu_mrp_manufacturing"
-                  action="everyday_add_stay_cost_action"
-                  sequence=""/>
+        <!--<menuitem id="everyday_add_stay_cost_menuitem"-->
+                  <!--name="每日增加成本"-->
+                  <!--parent="mrp.menu_mrp_manufacturing"-->
+                  <!--action="everyday_add_stay_cost_action"-->
+                  <!--sequence=""/>-->
     </data>
 </odoo>

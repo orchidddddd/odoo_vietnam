@@ -17,11 +17,11 @@
         <act_window id="future_quant_count_action" name="write_detail" res_model="future.quant.detail"
                     view_mode="form" target="new" multi="False"/>
 
-        <menuitem id="future_quant_count_form_menuitem"
-                  name="預期數量寫入"
-                  parent="mrp.menu_mrp_manufacturing"
-                  action="future_quant_count_action"
-                  sequence=""/>
+        <!--<menuitem id="future_quant_count_form_menuitem"-->
+                  <!--name="預期數量寫入"-->
+                  <!--parent="mrp.menu_mrp_manufacturing"-->
+                  <!--action="future_quant_count_action"-->
+                  <!--sequence=""/>-->
 
 
     </data>

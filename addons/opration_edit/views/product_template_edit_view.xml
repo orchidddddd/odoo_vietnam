@@ -73,11 +73,11 @@
                 <xpath expr="//field[@name='virtual_available']" position="replace">
                    <field name="virtual_available" invisible= "1"/>
                 </xpath>
-                <xpath expr="//field[@name='qty_available']" position="after">
-                   <field name="name" />
-                </xpath>
+                <!--<xpath expr="//field[@name='qty_available']" position="after">-->
+                   <!--<field name="name" />-->
+                <!--</xpath>-->
                 <xpath expr="//field[@name='name']" position="replace">
-                   <field name="name" invisible= "1"/>
+                   <field name="name" invisible= "0"/>
                 </xpath>
 
             </field>

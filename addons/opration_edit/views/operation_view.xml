@@ -12,7 +12,6 @@
                 <xpath expr="//field[@name='move_lines']/tree/field[@name='quantity_done']" position="attributes">
                         <attribute name="attrs">{'readonly': [('is_quantity_done_editable', '=', True)]}</attribute>
                 </xpath>
-
             </field>
         </record>
 
@@ -23,7 +22,7 @@
             <!--<field name="arch" type="xml">-->
                 <!--<xpath expr="//button[@name='action_cancel']" position="after">-->
                     <!--<button name="Auto_bombom" string="生產生產單" type="object"/>-->
-                    <!--<button name="Count_cost" string="換盆成本" type="object"/>-->
+                    <!--<button name="count_cost" string="換盆成本" type="object"/>-->
                     <!--<button name="past_cost" string="過往成本" type="object"/>-->
                     <!--<button name="total_cost" string="總成本" type="object"/>-->
                 <!--</xpath>-->
@@ -53,19 +52,19 @@
             </field>
         </record>
 
-        <!--<record id="mo_form_edit" model="ir.ui.view">-->
-            <!--<field name="name">mo_form_edit</field>-->
-            <!--<field name="model">mrp.production</field>-->
-            <!--<field name="inherit_id" ref="mrp.mrp_production_form_view"/>-->
-            <!--<field name="arch" type="xml">-->
-                <!--<xpath expr="//field[@name='product_id']" position="after">-->
-                    <!--<field name="count_cost"/>-->
-                    <!--<field name="past_cost"/>-->
-                    <!--<field name="per_unit_cost"/>-->
-                    <!--<field name="total_cost"/>-->
-                <!--</xpath>-->
-            <!--</field>-->
-        <!--</record>-->
+        <record id="mo_form_edit" model="ir.ui.view">
+            <field name="name">mo_form_edit</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_id']" position="after">
+                    <field name="count_cost"/>
+                    <field name="past_cost"/>
+                    <field name="per_unit_cost"/>
+                    <field name="total_cost"/>
+                </xpath>
+            </field>
+        </record>
 
         <!-- 將mrp的批次顯示數量放進sale裡面-->
         <menuitem id="menu_sale_traceability"

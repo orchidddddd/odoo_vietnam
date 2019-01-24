@@ -1,13 +1,30 @@
 from odoo import models, fields, api
+import time
+from datetime import timedelta
+import datetime
 from odoo.exceptions import UserError
 
 """將autobom搬進wizard"""
 class AutoBom(models.TransientModel):
     _name = 'auto.bom'
 
+    def test(self):
+        print('hello odoo')
+
     def Auto_bombom(self):
         productlotAuto = self.env['stock.production.lot'].search([])
         for i in productlotAuto.filtered(lambda x:x.product_qty>0):
+            bomline = self.env['mrp.bom.line'].search([('product_id', '=', i.product_id.id)])
+
+            date_time=datetime.datetime.strptime(i.create_date ,"%Y-%m-%d %H:%M:%S")
+            now_date=datetime.datetime.now()
+            print(now_date)
+            print(type(now_date))
+            qq = timedelta(days=bomline.bom_id.bom_time)
+            print(date_time+qq)
+            if date_time<=now_date:
+                print(123)
+            raise UserError('想不到吧')
 
             bomline = self.env['mrp.bom.line'].search([('product_id', '=', i.product_id.id)])
             print(bomline)

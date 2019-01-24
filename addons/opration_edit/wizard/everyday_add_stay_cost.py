@@ -4,8 +4,12 @@ class EverydayAddCost(models.Model):
     _name = 'everyday.add.cost'
     _description = '每日增加成本'
 
+    def test(self):
+        print('hello odoo')
+
     #之後做成每日檢查
     def everyday_add_stay_cost(self):
+        print('每日增加成本')
         res=self.env['stock.production.lot'].search([])
         print(res)
 

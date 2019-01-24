@@ -5,29 +5,29 @@ from odoo.exceptions import ValidationError, RedirectWarning, except_orm
 
 class LotInherit(models.Model):
     _inherit = "stock.production.lot"
-    def _get_default_category_id(self):
-        if self._context.get('categ_id') or self._context.get('default_categ_id'):
-            return self._context.get('categ_id') or self._context.get('default_categ_id')
-        category = self.env.ref('product.product_category_all', raise_if_not_found=False)
-        if not category:
-            category = self.env['product.category'].search([], limit=1)
-        if category:
-            return category.id
-        else:
-            err_msg = _('You must define at least one product category in order to be able to create products.')
-            redir_msg = _('Go to Internal Categories')
-            raise RedirectWarning(err_msg, self.env.ref('product.product_category_action_form').id, redir_msg)
+    # def _get_default_category_id(self):
+    #     if self._context.get('categ_id') or self._context.get('default_categ_id'):
+    #         return self._context.get('categ_id') or self._context.get('default_categ_id')
+    #     category = self.env.ref('product.product_category_all', raise_if_not_found=False)
+    #     if not category:
+    #         category = self.env['product.category'].search([], limit=1)
+    #     if category:
+    #         return category.id
+    #     else:
+    #         err_msg = _('You must define at least one product category in order to be able to create products.')
+    #         redir_msg = _('Go to Internal Categories')
+    #         raise RedirectWarning(err_msg, self.env.ref('product.product_category_action_form').id, redir_msg)
 
     price_ids = fields.One2many(comodel_name="cost.detail",inverse_name= "lot_id")
     cost_total= fields.Float(compute = "compute_cost", store=True)
     three_days_later = fields.Float('3 ngày sau',digits=(16,0))
     seven_days_later = fields.Float('7 ngày sau',digits=(16,0))
     fourteen_days_later = fields.Float('14 ngày sau',digits=(16,0))
-    categ_id = fields.Many2one(
-        'product.category', 'Internal Category',
-        change_default=True, default=_get_default_category_id,
-        required=True, help="Select category for the current product")
-    product_qty = fields.Float(group_operator="sum",store=True,digits=(16,0))
+    # categ_id = fields.Many2one(
+    #     'product.category', 'Internal Category',
+    #     change_default=True, default=_get_default_category_id,
+    #     required=True, help="Select category for the current product")
+    # product_qty = fields.Float(group_operator="sum",store=True,digits=(16,0))
 
     @api.depends('price_ids')
     def compute_cost(self):
@@ -90,9 +90,9 @@ class CountCostFuntion(models.Model):
 class OperatorChange(models.Model):
     _inherit = "product.template"
 
-    list_price = fields.Float(group_operator="avg",store=True)
-    standard_price = fields.Float(group_operator="avg",store=True)
-    qty_available = fields.Float(group_operator="sum", store=True)
+    # list_price = fields.Float(group_operator="avg",store=True)
+    # standard_price = fields.Float(group_operator="avg",store=True)
+    # qty_available = fields.Float(group_operator="sum", store=True)
 
 
 

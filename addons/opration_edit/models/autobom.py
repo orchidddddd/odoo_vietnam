@@ -1,5 +1,6 @@
 from odoo import models, fields, api
 from odoo.exceptions import UserError
+from odoo.tools import float_compare, float_round
 
 class BomTime(models.Model):
     _inherit = 'mrp.bom'
@@ -16,7 +17,7 @@ class CreatCost(models.Model):
     count_cost =fields.Float(string="換盆成本")
     past_cost = fields.Float(string="過往成本")
     per_unit_cost = fields.Float(string="每株成本")
-    total_cost = fields.Float(string="總成本")    #2019年01月12日 17時58分17秒 mark_done 18:18
+    total_cost = fields.Float(string="總成本")
 
 
     # """取得生產產品過往單價"""
@@ -28,6 +29,9 @@ class CreatCost(models.Model):
             self.count_cost = bom_temp.bom_cost * bom_temp.bom_time * mo_line.product_qty
         """取得產品過往單價 """
         for line in self.move_raw_ids:
+            if len(line.active_move_line_ids[0].lot_id) == 0:
+                print('QQ')
+                return True
             temp = line.active_move_line_ids[0].lot_id
             if len(line.active_move_line_ids) != 1:
                 raise UserError("批號只能有一筆")
@@ -96,18 +100,6 @@ class AutoBom(models.Model):
 
 class DoProduce(models.TransientModel):
     _inherit = "mrp.product.produce"
-    """按完生產紐之後 判斷使用者輸入數量是否有相符"""
-    @api.multi
-    def do_produce(self):
-        res=super(DoProduce,self).do_produce()
-        amout=0
-        for line in self.produce_line_ids:
-            amout += line.qty_done
-        print("13")
-        if self.product_qty !=amout:
-            raise UserError("生成數量與完成數量不符")
-        else:
-            return res
 
     """將批號以及數量帶入按完生產鈕後跳出的wizard"""
     @api.model
@@ -116,7 +108,9 @@ class DoProduce(models.TransientModel):
         print(res)
         """判斷produce_line_ids是否存在 避免系統錯誤"""
         if self._context and self._context.get('active_id'):
+            print(res['produce_line_ids'])
             if 'produce_line_ids' in fields:
+                print(res['produce_line_ids'])
                 line_temp = res['produce_line_ids'][0]
                 #print(line_temp)
 
@@ -147,4 +141,16 @@ class DoProduce(models.TransientModel):
                 #print(res)
         return res
 
+    """按完生產紐之後 判斷使用者輸入數量是否有相符"""
 
+    @api.multi
+    def do_produce(self):
+        res = super(DoProduce, self).do_produce()
+        amout = 0
+        for line in self.produce_line_ids:
+            amout += line.qty_done
+        print("13")
+        if self.product_qty != amout:
+            raise UserError("生成數量與完成數量不符")
+        else:
+            return res

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-         <!--&lt;!&ndash;加個分行欄位 但目前只是顯示用&ndash;&gt;-->
+        <!--&lt;!&ndash;加個分行欄位 但目前只是顯示用&ndash;&gt;-->
         <!--<record id="account_add_branch" model="ir.ui.view">-->
             <!--<field name="name">account_add_branch</field>-->
             <!--<field name="model">account.journal</field>-->

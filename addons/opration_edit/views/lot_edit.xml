@@ -7,7 +7,7 @@
             <field name="inherit_id" ref="stock.view_production_lot_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='ref']" position="after">
-                     <field name="cost_total" />
+                    <field name="cost_total" />
                     <field name="price_ids" >
                         <tree create="0">
                             <field name="create_date" readonly="1"/>
@@ -41,20 +41,20 @@
             </field>
         </record>
 
-        <record id="lot_search_edit" model="ir.ui.view">
-                <field name="name">lot_search_edit</field>
-                <field name="model">stock.production.lot</field>
-                <field name="inherit_id" ref="stock.search_product_lot_filter"/>
-                <field name="arch" type="xml">
-                    <xpath expr="//search/group/filter[@name='group_by_product']" position="before">
-                        <filter string='內部類別' name="categ_id" domain="[]" context="{'group_by' :'categ_id'}"/>
-                    </xpath>
-                </field>
-            </record>
+        <!--<record id="lot_search_edit" model="ir.ui.view">-->
+                <!--<field name="name">lot_search_edit</field>-->
+                <!--<field name="model">stock.production.lot</field>-->
+                <!--<field name="inherit_id" ref="stock.search_product_lot_filter"/>-->
+                <!--<field name="arch" type="xml">-->
+                    <!--<xpath expr="//search/group/filter[@name='group_by_product']" position="before">-->
+                        <!--<filter string='內部類別' name="categ_id" domain="[]" context="{'group_by' :'categ_id'}"/>-->
+                    <!--</xpath>-->
+                <!--</field>-->
+            <!--</record>-->
 
-        <record id="stock.action_production_lot_form" model="ir.actions.act_window">
-            <field name="context">{"search_default_categ_id":1,"search_default_group_by_product":1,'default_type': 'product'}</field>
-        </record>
+        <!--<record id="stock.action_production_lot_form" model="ir.actions.act_window">-->
+            <!--<field name="context">{"search_default_categ_id":1,"search_default_group_by_product":1,'default_type': 'product'}</field>-->
+        <!--</record>-->
 
     </data>
 </odoo>

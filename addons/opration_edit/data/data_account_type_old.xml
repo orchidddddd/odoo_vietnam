@@ -4,27 +4,27 @@
         <!-- account.account.type -->
         <record model="account.account.type" id="0111">
           <field name="name">Cash in hand</field>
-          <field name="type">other</field>
+          <field name="type">liquidity</field>
           <field name="include_initial_balance" eval="True"/>
         </record>
         <record model="account.account.type" id="0112">
           <field name="name">Cash in bank</field>
-          <field name="type">other</field>
+          <field name="type">liquidity</field>
           <field name="include_initial_balance" eval="True"/>
         </record>
         <record model="account.account.type" id="0131">
           <field name="name">Accounts receivable - trade</field>
-          <field name="type">other</field>
+          <field name="type">receivable</field>
           <field name="include_initial_balance" eval="True"/>
         </record>
         <record model="account.account.type" id="0133">
           <field name="name">VAT deduted</field>
-          <field name="type">other</field>
+          <field name="type">receivable</field>
           <field name="include_initial_balance" eval="True"/>
         </record>
         <record model="account.account.type" id="0138">
           <field name="name">Other receivable</field>
-          <field name="type">other</field>
+          <field name="type">receivable</field>
           <field name="include_initial_balance" eval="True"/>
         </record>
         <record model="account.account.type" id="0141">
@@ -79,22 +79,22 @@
         </record>
         <record model="account.account.type" id="0331">
           <field name="name">Payable to seller</field>
-          <field name="type">other</field>
+          <field name="type">payable</field>
           <field name="include_initial_balance" eval="True"/>
         </record>
         <record model="account.account.type" id="0333">
           <field name="name">Taxes and payable to state budget</field>
-          <field name="type">other</field>
+          <field name="type">payable</field>
           <field name="include_initial_balance" eval="True"/>
         </record>
         <record model="account.account.type" id="0334">
           <field name="name">Payable to employees</field>
-          <field name="type">other</field>
+          <field name="type">payable</field>
           <field name="include_initial_balance" eval="True"/>
         </record>
         <record model="account.account.type" id="0338">
           <field name="name">Other payable</field>
-          <field name="type">other</field>
+          <field name="type">payable</field>
           <field name="include_initial_balance" eval="True"/>
         </record>
         <record model="account.account.type" id="0341">

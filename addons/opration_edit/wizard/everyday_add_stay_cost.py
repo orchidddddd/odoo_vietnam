@@ -19,7 +19,7 @@ class EverydayAddCost(models.Model):
             bom=self.env['mrp.bom'].search([])
             print(bom)
             for b in bom:
-                print(b.product_tmpl_id.id)
+                # print(b.product_tmpl_id.id)
                 if i.product_id.id == b.product_tmpl_id.id:
                     print('上面的')
                     i.write({

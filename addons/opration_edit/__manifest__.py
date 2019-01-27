@@ -32,7 +32,8 @@
         'views/lot_edit.xml',
         'wizard/everyday_add_stay_cost.xml',
         'data/data_account_type_old.xml',
-        'views/automation.xml'
+        'data/automation.xml',
+        'data/sequence_customized_lot_number.xml'
     ],
     # only loaded in demonstration mode
     'demo': [

@@ -7,9 +7,14 @@ class InheritStockMove(models.Model):
     def _action_done(self):
         res=super(InheritStockMove,self)._action_done()
         print('move的action_done')
+        print(res)
         for line in res:
             print(line)
-            self.env['stock.move.line'].search([('id', '=', line.move_line_ids.id)]).update_qty123()
+            print(line.id)
+            print(self.env['stock.move.line'].search([('move_id', '=', line.id)]))
+            mo_line = self.env['stock.move.line'].search([('move_id', '=', line.id)])
+            for line2 in mo_line:
+                line2.update_qty123()
         return res
 
 class InheritStockQuant(models.Model):

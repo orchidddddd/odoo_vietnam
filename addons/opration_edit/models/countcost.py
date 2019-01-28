@@ -90,9 +90,9 @@ class CountCostFuntion(models.Model):
 class OperatorChange(models.Model):
     _inherit = "product.template"
 
-    # list_price = fields.Float(group_operator="avg",store=True)
-    # standard_price = fields.Float(group_operator="avg",store=True)
-    # qty_available = fields.Float(group_operator="sum", store=True)
+    list_price = fields.Float(group_operator="avg",store=True)
+    standard_price = fields.Float(group_operator="avg",store=True)
+    qty_available = fields.Float(group_operator="sum", store=True)
 
 
 

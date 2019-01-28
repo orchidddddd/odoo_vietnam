@@ -6,7 +6,7 @@ class OperationEdit(models.Model):
     _inherit = 'stock.move'
 
     lot_num = fields.Char(default=lambda self: self._get_default_lot_num())
-
+    #之後改成只有採購近來才會生成批次號
     def _get_default_lot_num(self):
         temp = self.picking_id.picking_type_id.name
         if temp == False:

@@ -15,6 +15,11 @@ class AutoBom(models.TransientModel):
         productlotAuto = self.env['stock.production.lot'].search([])
         for i in productlotAuto.filtered(lambda x:x.product_qty>0):
             print(i.product_id.id)
+            print(self.env['stock.move.line'].search([('lot_id','=',i.id),('done_move','=', False)]))
+            if len(self.env['stock.move.line'].search([('lot_id','=',i.id),('done_move','=', False)])) >= 1:
+                print('已有這筆單')
+                return True
+            print(i.product_id.id)
             print(i.product_id.name)
             bomline = self.env['mrp.bom.line'].search([('product_id', '=', i.product_id.id)])
 

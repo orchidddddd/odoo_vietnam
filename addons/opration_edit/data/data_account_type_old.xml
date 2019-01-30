@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- account.account.type -->
+        <record model="account.account.type" id="0111">
+          <field name="name">Cash in hand</field>
+          <field name="type">liquidity</field>
+          <field name="include_initial_balance" eval="True"/>
+        </record>
+        <record model="account.account.type" id="0112">
+          <field name="name">Cash in bank</field>
+          <field name="type">liquidity</field>
+          <field name="include_initial_balance" eval="True"/>
+        </record>
+        <record model="account.account.type" id="0131">
+          <field name="name">Accounts receivable - trade</field>
+          <field name="type">receivable</field>
+          <field name="include_initial_balance" eval="True"/>
+        </record>
+        <record model="account.account.type" id="0133">
+          <field name="name">VAT deduted</field>
+          <field name="type">receivable</field>
+          <field name="include_initial_balance" eval="True"/>
+        </record>
+        <record model="account.account.type" id="0138">
+          <field name="name">Other receivable</field>
+          <field name="type">receivable</field>
+          <field name="include_initial_balance" eval="True"/>
+        </record>
+        <record model="account.account.type" id="0141">
+          <field name="name">Advances</field>
+          <field name="type">other</field>
+          <field name="include_initial_balance" eval="True"/>
+        </record>
+        <record model="account.account.type" id="0152">
+          <field name="name">Raw materials</field>
+          <field name="type">other</field>
+          <field name="include_initial_balance" eval="True"/>
+        </record>
+        <record model="account.account.type" id="0153">
+          <field name="name">Tools and supplies</field>
+          <field name="type">other</field>
+          <field name="include_initial_balance" eval="True"/>
+        </record>
+        <record model="account.account.type" id="0154">
+          <field name="name">Work in progress</field>
+          <field name="type">other</field>
+          <field name="include_initial_balance" eval="True"/>
+        </record>
+        <record model="account.account.type" id="0156">
+          <field name="name">Merchandise inventory</field>
+          <field name="type">other</field>
+          <field name="include_initial_balance" eval="True"/>
+        </record>
+        <record model="account.account.type" id="0157">
+          <field name="name">Goods on consignment</field>
+          <field name="type">other</field>
+          <field name="include_initial_balance" eval="True"/>
+        </record>
+        <record model="account.account.type" id="0211">
+          <field name="name">Tangible fixed assets</field>
+          <field name="type">other</field>
+          <field name="include_initial_balance" eval="True"/>
+        </record>
+        <record model="account.account.type" id="0213">
+          <field name="name">Intangible fixed assets</field>
+          <field name="type">other</field>
+          <field name="include_initial_balance" eval="True"/>
+        </record>
+        <record model="account.account.type" id="0214">
+          <field name="name">Depreciation of fixed assets</field>
+          <field name="type">other</field>
+          <field name="include_initial_balance" eval="True"/>
+        </record>
+        <record model="account.account.type" id="0242">
+          <field name="name">Prepaid expenses</field>
+          <field name="type">other</field>
+          <field name="include_initial_balance" eval="True"/>
+        </record>
+        <record model="account.account.type" id="0331">
+          <field name="name">Payable to seller</field>
+          <field name="type">payable</field>
+          <field name="include_initial_balance" eval="True"/>
+        </record>
+        <record model="account.account.type" id="0333">
+          <field name="name">Taxes and payable to state budget</field>
+          <field name="type">payable</field>
+          <field name="include_initial_balance" eval="True"/>
+        </record>
+        <record model="account.account.type" id="0334">
+          <field name="name">Payable to employees</field>
+          <field name="type">payable</field>
+          <field name="include_initial_balance" eval="True"/>
+        </record>
+        <record model="account.account.type" id="0338">
+          <field name="name">Other payable</field>
+          <field name="type">payable</field>
+          <field name="include_initial_balance" eval="True"/>
+        </record>
+        <record model="account.account.type" id="0341">
+          <field name="name">Borrowing and fincance lease liabilities</field>
+          <field name="type">other</field>
+          <field name="include_initial_balance" eval="True"/>
+        </record>
+        <record model="account.account.type" id="0411">
+          <field name="name">Working capital</field>
+          <field name="type">other</field>
+          <field name="include_initial_balance" eval="True"/>
+        </record>
+        <record model="account.account.type" id="0413">
+          <field name="name">Foreign exchange differences</field>
+          <field name="type">other</field>
+          <field name="include_initial_balance" eval="True"/>
+        </record>
+        <record model="account.account.type" id="0421">
+          <field name="name">Undistributed earnings</field>
+          <field name="type">other</field>
+          <field name="include_initial_balance" eval="True"/>
+        </record>
+        <record model="account.account.type" id="0511">
+          <field name="name">Sales</field>
+          <field name="type">other</field>
+          <field name="include_initial_balance" eval="True"/>
+        </record>
+        <record model="account.account.type" id="0515">
+          <field name="name">Turnover from financial operations</field>
+          <field name="type">other</field>
+          <field name="include_initial_balance" eval="True"/>
+        </record>
+        <record model="account.account.type" id="0521">
+          <field name="name">Deduction from income</field>
+          <field name="type">other</field>
+          <field name="include_initial_balance" eval="True"/>
+        </record>
+        <record model="account.account.type" id="0627">
+          <field name="name">General operation cost</field>
+          <field name="type">other</field>
+          <field name="include_initial_balance" eval="True"/>
+        </record>
+        <record model="account.account.type" id="0632">
+          <field name="name">Cost of goods sold</field>
+          <field name="type">other</field>
+          <field name="include_initial_balance" eval="True"/>
+        </record>
+        <record model="account.account.type" id="0635">
+          <field name="name">Financial activities expenses</field>
+          <field name="type">other</field>
+          <field name="include_initial_balance" eval="True"/>
+        </record>
+        <record model="account.account.type" id="0641">
+          <field name="name">Selling expenses</field>
+          <field name="type">other</field>
+          <field name="include_initial_balance" eval="True"/>
+        </record>
+        <record model="account.account.type" id="0642">
+          <field name="name">General administration expenses</field>
+          <field name="type">other</field>
+          <field name="include_initial_balance" eval="True"/>
+        </record>
+        <record model="account.account.type" id="0711">
+          <field name="name">Other income</field>
+          <field name="type">other</field>
+          <field name="include_initial_balance" eval="True"/>
+        </record>
+        <record model="account.account.type" id="0811">
+          <field name="name">Other expenses</field>
+          <field name="type">other</field>
+          <field name="include_initial_balance" eval="True"/>
+        </record>
+        <record model="account.account.type" id="0911">
+          <field name="name">Evaluation of business results</field>
+          <field name="type">other</field>
+          <field name="include_initial_balance" eval="True"/>
+        </record>
+
+
+    </data>
+</odoo>
+

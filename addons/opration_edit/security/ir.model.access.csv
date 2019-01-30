@@ -1,2 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_opration_edit_opration_edit,opration_edit.opration_edit,model_opration_edit_opration_edit,,1,0,0,0
